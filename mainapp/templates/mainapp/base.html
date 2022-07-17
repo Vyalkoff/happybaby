@@ -169,27 +169,29 @@
       <div class="container">
         <div class="header-nav-wapper main-menu-wapper">
           <div class="vertical-wapper block-nav-categori">
-            <div class="block-title"><span class="icon-bar"><span></span><span></span><span></span></span><span class="text">Все Категории</span></div>
-            <div class="block-content verticalmenu-content">
-              <ul class="moorabi-nav-vertical vertical-menu moorabi-clone-mobile-menu">
-                <li class="menu-item"><a href="{% url 'products:index' %}" class="moorabi-menu-item-title" title="New Arrivals">Прогулка и улица </a></li>
-                <li class="menu-item"><a title="Hot Sale" href="{% url 'products:index' %}" class="moorabi-menu-item-title">Кормление</a></li>
-                <li class="menu-item menu-item-has-children"><a title="Accessories" href="{% url 'products:index' %}" class="moorabi-menu-item-title">Забота и уход</a><span class="toggle-submenu"></span>
-                  <ul role="menu" class=" submenu">
-                    <li class="menu-item"><a title="Gifts" href="{% url 'products:index' %}" class="moorabi-item-title">Подгузники</a></li>
-                    <li class="menu-item"><a title="Clothing" href="{% url 'products:index' %}" class="moorabi-item-title">Салфетки</a></li>
-                    <li class="menu-item"><a title="New Arrivals" href="{% url 'products:index' %}" class="moorabi-item-title">Детские крема, бальзамы, масла</a></li>
-                    <li class="menu-item"><a title="Accessories" href="{% url 'products:index' %}" class="moorabi-item-title">Клипсы и прищепки для пустышек</a></li>
-                    <li class="menu-item"><a title="Storage" href="{% url 'products:index' %}" class="moorabi-item-title">Уход за полостью рта</a></li>
-                  </ul>
-                </li>
-                <li class="menu-item"><a title="Clothing" href="{% url 'products:index' %}" class="moorabi-menu-item-title">Детская комната</a></li>
-                <li class="menu-item"><a title="Backpack" href="{% url 'products:index' %}" class="moorabi-menu-item-title">Игрушки и развлечения</a></li>
-                <li class="menu-item"><a title="Toys" href="{% url 'products:index' %}" class="moorabi-menu-item-title">Купание</a></li>
-                <li class="menu-item"><a title="Car Seat" href="{% url 'products:index' %}" class="moorabi-menu-item-title">Автокресла</a></li>
-              </ul>
-            </div>
-          </div>
+          <div class="block-title"><span class="icon-bar"><span></span><span></span><span></span></span><span class="text">Все Категории</span></div>
+              <div class="block-content verticalmenu-content">
+                  <ul class="moorabi-nav-vertical vertical-menu moorabi-clone-mobile-menu">
+                        {% for menu_value in category %}
+
+                             {% if 'child' in menu_value %}
+                                  <li class="menu-item menu-item-has-children">
+                                      <a title="{{ menu_value.title }}" href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
+                                      <span class="toggle-submenu"></span>
+                                    <ul role="menu" class=" submenu">
+                                            {% for child_menu in menu_value.child %}
+                                                <li class="menu-item"><a title="{{ child_menu.title }}" href="{% url 'details_product' %}" class="moorabi-item-title">{{ child_menu.name }}</a></li>
+                                            {% endfor %}
+                                    </ul>
+                                  </li>
+                            {% endif  %}
+
+
+                        {%endfor%}
+                          </ul>
+                        </div>
+                      </div>
+
           <div class="header-nav">
             <div class="container-wapper">
               <ul class="moorabi-clone-mobile-menu moorabi-nav main-menu " id="menu-main-menu">
