@@ -1,22 +1,50 @@
 from django.shortcuts import render
+from pathlib import Path
 import json
-import os
 
-path_menu = os.path.join(os.path.abspath('fixture'), 'menu.json')
 
-with open(r'D:\happybaby\mainapp\fixture\menu.json', encoding='utf-8') as file:
-    menu = json.load(file)
+def openfile(file_json):
+    path_json = Path(__file__).resolve().parent.joinpath('fixture', file_json)
+    with open(path_json, 'r', encoding='utf-8') as file:
+        js_prod = json.load(file)
+    return js_prod
 
+
+menu = openfile('menu.json')
+mini_basket = openfile('basket.json')
+insta = openfile('insta.json')
+product = openfile('products.json')
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'mainapp/index.html', context=menu)
+    context = {
+        'title': 'happybabby',
+        'category': menu,
+        'mini_basket': mini_basket,
+        "insta": insta,
+        "product": product,
+
+    }
+    return render(request, 'mainapp/index.html', context)
 
 
 def products(request):
-    return render(request, 'mainapp/products.html',context=menu)
+    context = {
+        'title': 'happybabby',
+        'category': menu,
+        'mini_basket': mini_basket,
+        "insta": insta,
+
+    }
+    return render(request, 'mainapp/products.html', context)
 
 
 def details_product(request):
-    return render(request, 'mainapp/product_details.html',context=menu)
+    context = {
+        'title': 'happybabby',
+        'category': menu,
+        'mini_basket': mini_basket,
+        "insta": insta,
+    }
+    return render(request, 'mainapp/product_details.html', context)

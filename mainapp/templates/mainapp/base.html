@@ -4,7 +4,7 @@
 <head>
     <title>
         {% block title %}
-                {{ title|title }}
+
         {% endblock %}
     </title>
 
@@ -83,33 +83,31 @@
                   <div class="content-wrap">
                     <h3 class="title">Корзина</h3>
                     <ul class="minicart-items">
-                      <li class="product-cart mini_cart_item">
-                        <a href="#" class="product-media"><img src="/static/images/item-minicart-1.jpg" alt="img"></a>
-                        <div class="product-details">
-                          <h5 class="product-name"><a href="#">Детская ванночка</a></h5>
-                          <div class="variations"><span class="attribute_color"><a href="#">Черный</a></span>,<span class="attribute_size"><a href="#">300ml</a></span></div><span class="product-price"><span class="price"><span>15000</span></span>
-                          </span><span class="product-quantity">(x1)</span>
-                          <div class="product-remove"><a href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
-                        </div>
-                      </li>
-                      <li class="product-cart mini_cart_item">
-                        <a href="#" class="product-media"><img src="/static/images/item-minicart-2.jpg" alt="img"></a>
-                        <div class="product-details">
-                          <h5 class="product-name"><a href="#">Решения для мыльных игрушек</a></h5>
-                          <div class="variations"><span class="attribute_color"><a href="#">Черный</a></span>,<span class="attribute_size"><a href="#">300ml</a></span></div><span class="product-price"><span class="price"><span>4500</span></span>
-                          </span><span class="product-quantity">(x1)</span>
-                          <div class="product-remove"><a href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
-                        </div>
-                      </li>
-                      <li class="product-cart mini_cart_item">
-                        <a href="#" class="product-media"><img src="/static/images/item-minicart-3.jpg" alt="img"></a>
-                        <div class="product-details">
-                          <h5 class="product-name"><a href="#">Решения для мыльных игрушек</a></h5>
-                          <div class="variations"><span class="attribute_color"><a href="#">Черный</a></span>,<span class="attribute_size"><a href="#">300ml</a></span></div><span class="product-price"><span class="price"><span>3500</span></span>
-                          </span><span class="product-quantity">(x1)</span>
-                          <div class="product-remove"><a href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
-                        </div>
-                      </li>
+                        {% for cart in mini_basket.product %}
+                          <li class="product-cart mini_cart_item">
+                            <a href="#" class="product-media"><img src="{% static cart.img %}" alt="img"></a>
+                            <div class="product-details">
+                              <h5 class="product-name"><a href="#">{{ cart.name }}</a></h5>
+                              <div class="variations">
+                                  <span class="attribute_color">
+                                      <a href="#">{{ cart.attribute_color }}</a>
+                                  </span>,
+                                  <span class="attribute_size">
+                                      <a href="#">{{ cart.attribute_size }}</a>
+                                  </span>
+                              </div>
+                                <span class="product-price">
+                                    <span class="price">
+                                <span>{{ cart.price }}
+                                </span>
+                                    </span>
+                                </span>
+                                <span class="product-quantity">{{ cart.product_quantity }}</span>
+                              <div class="product-remove"><a href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
+                            </div>
+                          </li>
+                        {% endfor %}
+
                     </ul>
                     <div class="subtotal"><span class="total-title">Итого:</span><span class="total-price">
                         <span class="Price-amount">														$135</span></span>
@@ -172,22 +170,27 @@
           <div class="block-title"><span class="icon-bar"><span></span><span></span><span></span></span><span class="text">Все Категории</span></div>
               <div class="block-content verticalmenu-content">
                   <ul class="moorabi-nav-vertical vertical-menu moorabi-clone-mobile-menu">
-                        {% for menu_value in category %}
+                                {% for menu_value in category.menu %}
 
-                             {% if 'child' in menu_value %}
-                                  <li class="menu-item menu-item-has-children">
-                                      <a title="{{ menu_value.title }}" href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
-                                      <span class="toggle-submenu"></span>
-                                    <ul role="menu" class=" submenu">
-                                            {% for child_menu in menu_value.child %}
-                                                <li class="menu-item"><a title="{{ child_menu.title }}" href="{% url 'details_product' %}" class="moorabi-item-title">{{ child_menu.name }}</a></li>
-                                            {% endfor %}
-                                    </ul>
-                                  </li>
-                            {% endif  %}
+                                     {% if 'child' in menu_value %}
+                                          <li class="menu-item menu-item-has-children">
+                                              <a title="{{ menu_value.title }}" href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
+                                              <span class="toggle-submenu"></span>
+                                            <ul role="menu" class=" submenu">
+                                                    {% for child_menu in menu_value.child %}
+                                                        <li class="menu-item"><a title="{{ child_menu.title }}" href="{% url 'details_product' %}" class="moorabi-item-title">{{ child_menu.name }}</a></li>
+                                                    {% endfor %}
+                                            </ul>
+                                          </li>
+                                    {% else %}
+                                          <li class="menu-item ">
+                                              <a title="{{ menu_value.title }}" href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
+                                              <span class="toggle-submenu"></span>
+                                          </li>
+                                    {% endif %}
 
 
-                        {%endfor%}
+                                {%endfor%}
                           </ul>
                         </div>
                       </div>
@@ -212,7 +215,7 @@
     <div class="wapper">
       <div class="item mobile-logo">
         <div class="logo">
-          <a href="#"><img src="/static/images/logo.png" alt="img"></a>
+          <a href="#"><img src="{% static '/images/logo.png' %}" alt="img"></a>
         </div>
       </div>
       <div class="item item mobile-search-box has-sub"><a href="#"><span class="icon"><i class="fa fa-search" aria-hidden="true"></i></span></a>
@@ -254,30 +257,16 @@
             <div class="instagram owl-slick equal-container"
                  data-slick='{"autoplay":false, "autoplaySpeed":1000, "arrows":false, "dots":false, "infinite":true, "speed":800, "rows":1}'
                  data-responsive='[{"breakpoint":"2000","settings":{"slidesToShow":5}},{"breakpoint":"1200","settings":{"slidesToShow":4}},{"breakpoint":"992","settings":{"slidesToShow":3}},{"breakpoint":"768","settings":{"slidesToShow":2}},{"breakpoint":"481","settings":{"slidesToShow":2}}]'>
-                <div class="item-instagram">
-                    <a href="#"><img src="{% static 'images/item-instagram-1.jpg' %}" alt="img"></a>
+                {% for photo in insta.photo  %}
+                    <div class="item-instagram">
+                    <a href="#"><img src="{% static photo %}" alt="img"></a>
                     <span class="text">
                         <i class="icon flaticon-instagram" aria-hidden="true"></i>
                     </span>
                 </div>
-                <div class="item-instagram">
-                    <a href="#"><img src="{% static 'images/item-instagram-2.jpg' %}" alt="img"></a>
-                    <span class="text">
-                        <i class="icon flaticon-instagram" aria-hidden="true"></i>
-                    </span>
-                </div>
-                <div class="item-instagram">
-                    <a href="#"><img src="{% static 'images/item-instagram-3.jpg' %}" alt="img"></a>
-                    <span class="text">
-                        <i class="icon flaticon-instagram" aria-hidden="true"></i>
-                    </span>
-                </div>
-                <div class="item-instagram">
-                    <a href="#"><img src="{% static 'images/item-instagram-4.jpg' %}" alt="img"></a><span class="text"><i
-                        class="icon flaticon-instagram" aria-hidden="true"></i></span></div>
-                <div class="item-instagram">
-                    <a href="#"><img src="{% static 'images/item-instagram-5.jpg' %}" alt="img"></a><span class="text"><i
-                        class="icon flaticon-instagram" aria-hidden="true"></i></span></div>
+                {% endfor %}
+
+
             </div>
         </div>
     </div>
@@ -299,11 +288,12 @@
             <div class="moorabi-custommenu default">
               <h2 class="widgettitle">Quick Menu</h2>
               <ul class="menu">
-                <li class="menu-item"><a href="#">Новые поступления</a></li>
-                <li class="menu-item"><a href="#">Life style</a></li>
-                <li class="menu-item"><a href="#">Clothing</a></li>
-                <li class="menu-item"><a href="#">Backpack</a></li>
-                <li class="menu-item"><a href="#">Toys</a></li>
+                  {% for menu in category.quick_menu  %}
+                     <li class="menu-item"><a href="#">{{ menu.name }}</a></li>
+                  {% endfor %}
+
+
+
               </ul>
             </div>
           </div>
@@ -311,22 +301,23 @@
             <div class="moorabi-custommenu default">
               <h2 class="widgettitle">Information</h2>
               <ul class="menu">
-                <li class="menu-item"><a href="#">FAQs</a></li>
-                <li class="menu-item"><a href="#">Track Order</a></li>
-                <li class="menu-item"><a href="#">Delivery</a></li>
-                <li class="menu-item"><a href="#">Contact Us</a></li>
-                <li class="menu-item"><a href="#">Return</a></li>
+                  {% for info in category.info  %}
+                     <li class="menu-item"><a href="#">{{ info.name }}</a></li>
+                  {% endfor %}
+
+
+
               </ul>
             </div>
           </div>
           <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-4">
             <div class="moorabi-newsletter style1">
               <div class="newsletter-head">
-                <h3 class="title">Newsletter</h3></div>
+                <h3 class="title">Письма</h3></div>
               <div class="newsletter-form-wrap">
                 <div class="list">Get notified of new products, limited releases, and more.</div>
                 <input type="email" class="input-text email email-newsletter" placeholder="Your email letter">
-                <button class="button btn-submit submit-newsletter">SUBSCRIBE</button>
+                <button class="button btn-submit submit-newsletter">Подписаться</button>
               </div>
             </div>
             <div class="moorabi-socials">

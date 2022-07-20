@@ -1,0 +1,28 @@
+{
+  "product": [
+    {
+      "name": "Детская ванночка",
+      "attribute_color": "Черный",
+      "attribute_size": "300ml",
+      "price": "15000",
+      "img": "images/item-minicart-1.jpg",
+      "product_quantity": "1"
+    },
+    {
+      "name": "Решения для мыльных игрушек",
+      "attribute_color": "Черный",
+      "attribute_size": "300ml",
+      "price": "4500",
+      "img": "images/item-minicart-2.jpg",
+      "product_quantity": "1"
+    },
+    {
+      "name": "Футболка",
+      "attribute_color": "Черный",
+      "attribute_size": "300ml",
+      "price": "4500",
+      "img": "images/item-minicart-3.jpg",
+      "product_quantity": "1"
+    }
+  ]
+}
