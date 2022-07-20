@@ -1,0 +1,58 @@
+{
+  "menu": [
+    {
+      "name": "Прогулка и улица",
+      "title": "New Arrivals"
+    },
+    {
+      "name": "Кормление",
+      "title": "feeding"
+    },
+    {
+      "name": "Забота и уход",
+      "title": "feeding",
+      "child": [
+        {
+          "name": "Подгузники",
+          "title": "Diapers"
+        },
+        {
+          "name": "Салфетки",
+          "title": "Napkins"
+        }
+      ]
+    }
+  ],
+  "quick_menu": [
+    {
+      "name": "Новые поступления"
+    },
+    {
+      "name": "Life style"
+    },
+    {
+      "name": "Clothing"
+    },
+    {
+      "name": "Backpack"
+    },
+    {
+      "name": "Toys"
+    }
+  ],
+  "info": [
+    {
+      "name": "FAQs"
+    },
+    {
+      "name": "Отследить заказ"
+    },
+    {
+      "name": "Доставка"
+    },
+    {
+      "name": "Связаться"
+    }
+
+  ]
+}
