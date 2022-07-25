@@ -46,13 +46,18 @@
 {#                        </div>#}
                     </div>
                     <ul class="row list-products auto-clear equal-container product-grid">
-                        <li class="product-item  col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
+                        {% for item in product %}
+                            <li class="product-item  col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
                             <div class="product-inner equal-element">
-                                <div class="product-top">
-                                    <div class="flash"><span class="onnew"><span class="text">new</span></span></div>
-                                </div>
+
+                                    {% if item.status %}
+                                        <div class="product-top">
+                                            <div class="flash"><span class="onnew"><span class="text">{{ item.status }}</span></span></div>
+                                        </div>
+                                    {% endif %}
+
                                 <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="{% url 'details_product' %}"><img src="{% static 'images/product-item-1.jpg' %}" alt="img"></a>
+                                    <div class="thumb-inner"><a href="{% url 'details_product' %}"><img src="/media/{{ item.image }}" alt="img"></a>
                                         <div class="thumb-group">
                                             <div class="yith-wcwl-add-to-wishlist">
                                                 <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
@@ -62,302 +67,19 @@
                                     </div>
                                 </div>
                                 <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Shark Shirt</a></h5>
+                                    <h5 class="product-name product_title"><a href="#">{{ item.name }}</a></h5>
                                     <div class="group-info">
                                         <div class="stars-rating">
                                             <div class="star-rating"><span class="star-3"></span></div>
                                             <div class="count-star"> (3)</div>
                                         </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
+                                        <div class="price"><ins>{{ item.price }}</ins></div>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="product-item product-type-variable col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                            <div class="product-inner equal-element">
-                                <div class="product-top"></div>
-                                <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="{% url 'details_product' %}"><img src="{% static 'images/product-item-2.jpg' %}" alt="img"></a>
-                                        <div class="thumb-group">
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
-                                            </div><a href="#" class="button quick-wiew-button">Quick View</a>
-                                            <div class="loop-form-add-to-cart"><button class="single_add_to_cart_button button">Add to cart</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Summer T-shirt Boy</a></h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating"><span class="star-3"></span></div>
-                                            <div class="count-star"> (3)</div>
-                                        </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-item product-type-variable col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                            <div class="product-inner equal-element">
-                                <div class="product-top">
-                                    <div class="flash"><span class="onnew"><span class="text">new</span></span></div>
-                                </div>
-                                <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="#"><img src="{% static 'images/product-item-3.jpg' %}" alt="img"></a>
-                                        <div class="thumb-group">
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
-                                            </div><a href="#" class="button quick-wiew-button">Quick View</a>
-                                            <div class="loop-form-add-to-cart"><button class="single_add_to_cart_button button">Add to cart</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Sea Toy Collection</a></h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating"><span class="star-3"></span></div>
-                                            <div class="count-star"> (3)</div>
-                                        </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-item product-type-variable col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                            <div class="product-inner equal-element">
-                                <div class="product-top"></div>
-                                <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="#"><img src="{% static 'images/product-item-4.jpg' %}" alt="img"></a>
-                                        <div class="thumb-group">
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
-                                            </div><a href="#" class="button quick-wiew-button">Quick View</a>
-                                            <div class="loop-form-add-to-cart"><button class="single_add_to_cart_button button">Add to cart</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Boy Brown Shirt</a></h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating"><span class="star-3"></span></div>
-                                            <div class="count-star"> (3)</div>
-                                        </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-item  col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                            <div class="product-inner equal-element">
-                                <div class="product-top"></div>
-                                <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="#"><img src="{% static 'images/product-item-5.jpg' %}" alt="img"></a>
-                                        <div class="thumb-group">
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
-                                            </div><a href="#" class="button quick-wiew-button">Quick View</a>
-                                            <div class="loop-form-add-to-cart"><button class="single_add_to_cart_button button">Add to cart</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Autumn Shirt</a></h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating"><span class="star-3"></span></div>
-                                            <div class="count-star"> (3)</div>
-                                        </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-item product-type-variable col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                            <div class="product-inner equal-element">
-                                <div class="product-top">
-                                    <div class="flash"><span class="onnew"><span class="text">new</span></span></div>
-                                </div>
-                                <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="#"><img src="{% static 'images/product-item-6.jpg' %}" alt="img"></a>
-                                        <div class="thumb-group">
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
-                                            </div><a href="#" class="button quick-wiew-button">Quick View</a>
-                                            <div class="loop-form-add-to-cart"><button class="single_add_to_cart_button button">Add to cart</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Yellow Shirt</a></h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating"><span class="star-3"></span></div>
-                                            <div class="count-star"> (3)</div>
-                                        </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-item product-type-variable col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                            <div class="product-inner equal-element">
-                                <div class="product-top"></div>
-                                <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="#"><img src="{% static 'images/product-item-7.jpg' %}" alt="img"></a>
-                                        <div class="thumb-group">
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
-                                            </div><a href="#" class="button quick-wiew-button">Quick View</a>
-                                            <div class="loop-form-add-to-cart"><button class="single_add_to_cart_button button">Add to cart</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Red Cars</a></h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating"><span class="star-3"></span></div>
-                                            <div class="count-star"> (3)</div>
-                                        </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-item  col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                            <div class="product-inner equal-element">
-                                <div class="product-top"></div>
-                                <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="#"><img src="{% static 'images/product-item-20.jpg' %}" alt="img"></a>
-                                        <div class="thumb-group">
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
-                                            </div><a href="#" class="button quick-wiew-button">Quick View</a>
-                                            <div class="loop-form-add-to-cart"><button class="single_add_to_cart_button button">Add to cart</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Lucky cat</a></h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating"><span class="star-3"></span></div>
-                                            <div class="count-star"> (3)</div>
-                                        </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-item product-type-variable col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                            <div class="product-inner equal-element">
-                                <div class="product-top">
-                                    <div class="flash"><span class="onnew"><span class="text">new</span></span></div>
-                                </div>
-                                <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="#"><img src="{% static 'images/product-item-9.jpg' %}" alt="img"></a>
-                                        <div class="thumb-group">
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
-                                            </div><a href="#" class="button quick-wiew-button">Quick View</a>
-                                            <div class="loop-form-add-to-cart"><button class="single_add_to_cart_button button">Add to cart</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Cute Girl Shirt</a></h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating"><span class="star-3"></span></div>
-                                            <div class="count-star"> (3)</div>
-                                        </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-item  col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                            <div class="product-inner equal-element">
-                                <div class="product-top"></div>
-                                <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="#"><img src="{% static 'images/product-item-8.jpg' %}" alt="img"></a>
-                                        <div class="thumb-group">
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
-                                            </div><a href="#" class="button quick-wiew-button">Quick View</a>
-                                            <div class="loop-form-add-to-cart"><button class="single_add_to_cart_button button">Add to cart</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Summerday T-Shirt</a></h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating"><span class="star-3"></span></div>
-                                            <div class="count-star"> (3)</div>
-                                        </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-item  col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                            <div class="product-inner equal-element">
-                                <div class="product-top">
-                                    <div class="flash"><span class="onnew"><span class="text">new</span></span></div>
-                                </div>
-                                <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="#"><img src="{% static 'images/product-item-21.jpg' %}" alt="img"></a>
-                                        <div class="thumb-group">
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
-                                            </div><a href="#" class="button quick-wiew-button">Quick View</a>
-                                            <div class="loop-form-add-to-cart"><button class="single_add_to_cart_button button">Add to cart</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Zoo Boy Clothes</a></h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating"><span class="star-3"></span></div>
-                                            <div class="count-star"> (3)</div>
-                                        </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-item  col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                            <div class="product-inner equal-element">
-                                <div class="product-top">
-                                    <div class="flash"><span class="onnew"><span class="text">new</span></span></div>
-                                </div>
-                                <div class="product-thumb">
-                                    <div class="thumb-inner"><a href="#"><img src="{% static 'images/product-item-22.jpg' %}" alt="img"></a>
-                                        <div class="thumb-group">
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
-                                            </div><a href="#" class="button quick-wiew-button">Quick View</a>
-                                            <div class="loop-form-add-to-cart"><button class="single_add_to_cart_button button">Add to cart</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title"><a href="#">Hello Boy Shirt</a></h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating"><span class="star-3"></span></div>
-                                            <div class="count-star"> (3)</div>
-                                        </div>
-                                        <div class="price"><del>$65</del><ins>$45</ins></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        {% endfor %}
+
                     </ul>
                     <div class="pagination clearfix style3">
                         <div class="nav-link"><a href="#" class="page-numbers"><i class="icon fa fa-angle-left" aria-hidden="true"></i></a><a href="#" class="page-numbers">1</a><a href="#" class="page-numbers">2</a><a href="#" class="page-numbers current">3</a><a href="#" class="page-numbers"><i class="icon fa fa-angle-right" aria-hidden="true"></i></a></div>
