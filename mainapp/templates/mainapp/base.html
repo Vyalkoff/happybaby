@@ -170,11 +170,11 @@
           <div class="block-title"><span class="icon-bar"><span></span><span></span><span></span></span><span class="text">Все Категории</span></div>
               <div class="block-content verticalmenu-content">
                   <ul class="moorabi-nav-vertical vertical-menu moorabi-clone-mobile-menu">
-                                {% for menu_value in category.menu %}
+                                {% for menu_value in category %}
 
-                                     {% if 'child' in menu_value %}
+                                     {% comment %}{% if 'child' in menu_value %}
                                           <li class="menu-item menu-item-has-children">
-                                              <a title="{{ menu_value.title }}" href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
+                                              <a  href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
                                               <span class="toggle-submenu"></span>
                                             <ul role="menu" class=" submenu">
                                                     {% for child_menu in menu_value.child %}
@@ -182,12 +182,12 @@
                                                     {% endfor %}
                                             </ul>
                                           </li>
-                                    {% else %}
+                                    {% else %}{% endcomment %}
                                           <li class="menu-item ">
-                                              <a title="{{ menu_value.title }}" href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
+                                              <a title="Категория" href="{% url 'products:products' menu_value.pk %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
                                               <span class="toggle-submenu"></span>
                                           </li>
-                                    {% endif %}
+
 
 
                                 {%endfor%}
@@ -203,7 +203,7 @@
                 </li>
                 <li class="menu-item  menu-item-has-children"><a href="#" class="moorabi-menu-item-title" title="Blogs">Статьи</a><span class="toggle-submenu"></span>
                 </li>
-                <li class="menu-item"><a href="#" class="moorabi-menu-item-title" title="About">О нас</a></li>
+                <li class="menu-item"><a href="{% url 'about' %}" class="moorabi-menu-item-title" title="About">О нас</a></li>
               </ul>
             </div>
           </div>
@@ -358,7 +358,7 @@
 
 
 {% block script %}
- <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
     <script src="/static/js/jquery.plugin-countdown.min.js"></script>
     <script src="/static/js/jquery-countdown.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
