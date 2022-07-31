@@ -203,7 +203,7 @@
                 </li>
                 <li class="menu-item  menu-item-has-children"><a href="#" class="moorabi-menu-item-title" title="Blogs">Статьи</a><span class="toggle-submenu"></span>
                 </li>
-                <li class="menu-item"><a href="#" class="moorabi-menu-item-title" title="About">О нас</a></li>
+                <li class="menu-item"><a href="{% url 'about' %}" class="moorabi-menu-item-title" title="About">О нас</a></li>
               </ul>
             </div>
           </div>
@@ -358,7 +358,7 @@
 
 
 {% block script %}
- <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
     <script src="/static/js/jquery.plugin-countdown.min.js"></script>
     <script src="/static/js/jquery-countdown.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
