@@ -40,19 +40,7 @@
         <div class="top-bar-left">
           <div class="header-message"> Добро пожаловать в наш интернет магазин!</div>
         </div>
-        <div class="top-bar-right">
-{#          <div class="header-language">#}
-{#            <div class="moorabi-language moorabi-dropdown"><a href="#" class="active language-toggle" data-moorabi="moorabi-dropdown"><span>										English (USD)</span></a>#}
-{#              <ul class="moorabi-submenu">#}
-{#                <li class="switcher-option"><a href="#"><span> Русский (RUB)</span></a></li>#}
-{#                <li class="switcher-option"><a href="#"><span>Japanese (JPY)</span></a></li>#}
-{#              </ul>#}
-{#            </div>#}
-{#          </div>#}
-          <ul class="header-user-links">
-            <li><a href="#">Войти/Регистрация</a></li>
-          </ul>
-        </div>
+        {% include 'users/inc_login.html' %}
       </div>
     </div>
     <div class="container">
@@ -203,7 +191,7 @@
                 </li>
                 <li class="menu-item  menu-item-has-children"><a href="#" class="moorabi-menu-item-title" title="Blogs">Статьи</a><span class="toggle-submenu"></span>
                 </li>
-                <li class="menu-item"><a href="{% url 'about' %}" class="moorabi-menu-item-title" title="About">О нас</a></li>
+                <li class="menu-item"><a href="#" class="moorabi-menu-item-title" title="About">О нас</a></li>
               </ul>
             </div>
           </div>

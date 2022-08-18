@@ -2,6 +2,7 @@ from django.shortcuts import render
 from pathlib import Path
 import json
 from mainapp.models import Product, ProductCategory
+from users.models import User
 
 
 def openfile(file_json):
@@ -23,14 +24,18 @@ def index(request):
     product_sale = Product.objects.filter(status='sale')[:5]
     category = ProductCategory.objects.all()
 
+
+
     context = {
-        'title': 'happybabby',
+        'title': 'happybabby-Главная',
         'category': category,
         'mini_basket': mini_basket,
         "insta": insta,
         "product_new": product_new,
         "product_most": product_most,
         "product_sale": product_sale,
+
+
 
     }
     return render(request, 'mainapp/index.html', context)
@@ -41,7 +46,7 @@ def products(request, category_id):
     category = ProductCategory.objects.all()
     current_category = ProductCategory.objects.get(pk=category_id)
     context = {
-        'title': 'happybabby',
+        'title': f'happybabby-{current_category}',
         'category': category,
         'mini_basket': mini_basket,
         "insta": insta,

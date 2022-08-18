@@ -1,0 +1,100 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title|title }}
+{% endblock %}
+
+
+{% block content %}
+    <div class="main-content main-content-login">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-trail breadcrumbs">
+                        <ul class="trail-items breadcrumb">
+                            <li class="trail-item trail-begin"><a
+                                    href="{% url 'index' %}"></a>Главная
+                            </li>
+                            <li class="trail-item trail-end active"> Регистрация</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="content-area col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="site-main">
+                        <h3 class="custom_blog_title"> Регистрация</h3>
+                        <div class="customer_login">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="login-item"><h5 class="title-login">Зарегистрироватся</h5>
+                                        <form class="register" method="post" action="{% url 'users:register' %}">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <label class="text">Email</label>
+                                                    {{ form.email }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                     <label class="text">Логин</label>
+                                                    {{ form.username }}
+                                                </div>
+
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <label class="text">Имя</label>
+                                                        {{ form.first_name }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                     <label class="text">Фамилия</label>
+                                                        {{ form.last_name }}
+                                                </div>
+
+                                            </div>
+                                             <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <label class="text">Пароль</label>
+                                                        {{ form.password1 }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                     <label class="text">Повторите пароль</label>
+                                                        {{ form.password2 }}
+                                                </div>
+
+                                            </div>
+                                             <div class="form-row ">
+                                                 <div class="col-md-8">
+                                                            <label class="text">Телефон</label>
+                                                        {{ form.mobile_phone }}
+                                                 </div>
+                                            </div>
+
+{#                                                <div class="col-md-6" >#}
+{#                                                    <span class="inline">#}
+{#                                                    <input type="checkbox" id="cb2">#}
+{#                                                    <label for="cb2" class="label-text">Я согласен </label>#}
+{#                                                    </span>#}
+{#                                                </div>#}
+                                            <div class="form-row ">
+                                                <div class="col-md-6 " style="padding-top: 15px">
+                                                    <input type="submit" class="button-submit" value="Register Now">
+                                                </div>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
