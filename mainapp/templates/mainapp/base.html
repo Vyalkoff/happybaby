@@ -40,19 +40,7 @@
         <div class="top-bar-left">
           <div class="header-message"> Добро пожаловать в наш интернет магазин!</div>
         </div>
-        <div class="top-bar-right">
-{#          <div class="header-language">#}
-{#            <div class="moorabi-language moorabi-dropdown"><a href="#" class="active language-toggle" data-moorabi="moorabi-dropdown"><span>										English (USD)</span></a>#}
-{#              <ul class="moorabi-submenu">#}
-{#                <li class="switcher-option"><a href="#"><span> Русский (RUB)</span></a></li>#}
-{#                <li class="switcher-option"><a href="#"><span>Japanese (JPY)</span></a></li>#}
-{#              </ul>#}
-{#            </div>#}
-{#          </div>#}
-          <ul class="header-user-links">
-            <li><a href="#">Войти/Регистрация</a></li>
-          </ul>
-        </div>
+        {% include 'users/inc_login.html' %}
       </div>
     </div>
     <div class="container">
@@ -170,11 +158,11 @@
           <div class="block-title"><span class="icon-bar"><span></span><span></span><span></span></span><span class="text">Все Категории</span></div>
               <div class="block-content verticalmenu-content">
                   <ul class="moorabi-nav-vertical vertical-menu moorabi-clone-mobile-menu">
-                                {% for menu_value in category.menu %}
+                                {% for menu_value in category %}
 
-                                     {% if 'child' in menu_value %}
+                                     {% comment %}{% if 'child' in menu_value %}
                                           <li class="menu-item menu-item-has-children">
-                                              <a title="{{ menu_value.title }}" href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
+                                              <a  href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
                                               <span class="toggle-submenu"></span>
                                             <ul role="menu" class=" submenu">
                                                     {% for child_menu in menu_value.child %}
@@ -182,12 +170,12 @@
                                                     {% endfor %}
                                             </ul>
                                           </li>
-                                    {% else %}
+                                    {% else %}{% endcomment %}
                                           <li class="menu-item ">
-                                              <a title="{{ menu_value.title }}" href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
+                                              <a title="Категория" href="{% url 'products:products' menu_value.pk %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
                                               <span class="toggle-submenu"></span>
                                           </li>
-                                    {% endif %}
+
 
 
                                 {%endfor%}
@@ -358,7 +346,7 @@
 
 
 {% block script %}
- <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
     <script src="/static/js/jquery.plugin-countdown.min.js"></script>
     <script src="/static/js/jquery-countdown.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
