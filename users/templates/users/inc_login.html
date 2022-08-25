@@ -1,7 +1,14 @@
 <div class="top-bar-right">
-
-          <ul class="header-user-links">
-            <li><a href="{%  url 'users:login' %}">Войти</a>/<a href="{%  url 'users:register' %}">Регистрация</a></li>
+        {% if user.is_authenticated %}
+            <ul class="header-user-links">
+            <li>Вы вошли <span style="font-weight: bold">{{ user.first_name }}</span>  / <a href="{%  url 'users:logout' %}">Выйти</a></li>
 
           </ul>
+        {% else %}
+            <ul class="header-user-links">
+            <li><a href="{%  url 'users:login' %}">Войти</a>/ <a href="{%  url 'users:register' %}">Регистрация</a></li>
+
+          </ul>
+        {% endif %}
+
         </div>

@@ -38,8 +38,10 @@
     <div class="top-bar">
       <div class="container">
         <div class="top-bar-left">
-          <div class="header-message"> Добро пожаловать в наш интернет магазин!</div>
+          <div class="header-message">Ваш город <a href="#">Актау</a></div>
         </div>
+
+
         {% include 'users/inc_login.html' %}
       </div>
     </div>
@@ -51,6 +53,7 @@
               <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="img"></a>
             </div>
           </div>
+
           <div class="col-lg-7 col-sm-8 col-md-6 col-xs-5 col-ts-12">
             <div class="block-search-block">
               <form class="form-search form-search-width-category">

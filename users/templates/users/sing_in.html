@@ -23,14 +23,15 @@
             </div>
             <div class="row">
                 <div class="content-area col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="site-main"><h3 class="custom_blog_title"> Авторизация</h3>
+                    <div class="site-main">
+                        <h3 class="custom_blog_title"> Авторизация</h3>
                         <div class="customer_login">
-                            <div class="row justify-content-center">
+                            <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="login-item"><h5 class="title-login">Логин аккаунта</h5>
                                         <form class="login" action="{% url 'users:login' %}" method="post">
                                             {% csrf_token %}
-                                            {{ form. }}
+
 
 
                                             <div class="social-account"><h6 class="title-social">Социальная сеть</h6><a

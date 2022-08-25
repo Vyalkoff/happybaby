@@ -4,9 +4,6 @@ from django.core.exceptions import ValidationError
 
 
 # Create your models here.
-def validator_age(age):
-    if age < 10:
-        raise ValidationError('Надо быть старше 10', code='min_value')
 
 
 class User(AbstractUser):
@@ -19,7 +16,7 @@ class User(AbstractUser):
     mobile_phone = models.CharField(max_length=11, unique=True, verbose_name='Мобильный номер')
     country = models.CharField(max_length=11, blank=True, choices=KindCity.choices, verbose_name='Город')
     address = models.CharField(max_length=200, blank=True, verbose_name='Адрес')
-    age = models.PositiveIntegerField(verbose_name='Возраст', validators=[validator_age])
+
 
     class Meta:
         verbose_name = 'Пользователь'
