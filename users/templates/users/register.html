@@ -28,6 +28,14 @@
                         <div class="customer_login">
                             <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12">
+                                         {% if form.errors %}
+                                            <div class="alert alert-warning alert-dismissable  show" role="alert">
+                                                {{ form.errors|escape }}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">x</span>
+                                                </button>
+                                            </div>
+                                        {% endif %}
                                         <div class="login-item">
                                              <h5 class="title-login">Зарегистрироватся</h5>
                                              <form class="register" method="post" action="{% url 'users:register' %}">
@@ -55,7 +63,7 @@
 
 
                                                 </p>
-                                                 <p class="form-row">
+                                                 <p class="form-row form-row-wide">
 
                                                         <label class="text">Пароль</label>
                                                             {{ form.password1 }}
@@ -66,12 +74,7 @@
 
 
                                                 </p>
-                                                 <p class="form-row ">
 
-                                                                <label class="text">Телефон</label>
-                                                            {{ form.mobile_phone }}
-
-                                                </p>
                                                  <p class="form-row ">
 
                                                         <input type="submit" class="button-submit" value="Register Now">
