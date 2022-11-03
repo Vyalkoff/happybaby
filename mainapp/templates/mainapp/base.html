@@ -4,7 +4,7 @@
 <head>
     <title>
         {% block title %}
-
+            {{ title|title }}
         {% endblock %}
     </title>
 
@@ -189,7 +189,7 @@
           <div class="header-nav">
             <div class="container-wapper">
               <ul class="moorabi-clone-mobile-menu moorabi-nav main-menu " id="menu-main-menu">
-                <li class="menu-item  menu-item-has-children"><a href='{% url 'index' %}' class="moorabi-menu-item-title" title="Home">Главная</a>
+                <li class="menu-item  menu-item-has-children"><a href="{% url 'index' %}" class="moorabi-menu-item-title" title="Home">Главная</a>
 
                 </li>
                 <li class="menu-item  menu-item-has-children"><a href="#" class="moorabi-menu-item-title" title="Blogs">Статьи</a><span class="toggle-submenu"></span>
@@ -240,7 +240,7 @@
   </div>
 {% block content %}
 
-{% endblock %}
+{% endblock content %}
 <div class="instagram-wrapp">
     <div>
         <h3 class="custommenu-title-blog"><i class="fa fa-instagram" aria-hidden="true"></i> INSTAGRAM</h3>

@@ -1,10 +1,11 @@
-from django.shortcuts import render
 from mainapp.models import ProductCategory
 from mainapp.views import openfile
-from users.forms import UserLoginForm, UserRegisterForm
+from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
 from django.contrib import auth
 from django.urls import reverse
 from django.shortcuts import render, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 mini_basket = openfile('basket.json')
 insta = openfile('insta.json')
@@ -12,6 +13,7 @@ category = ProductCategory.objects.all()
 
 
 # Create your views here.
+
 def login(request):
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
@@ -22,9 +24,6 @@ def login(request):
             if user.is_active:
                 auth.login(request, user)
                 return HttpResponseRedirect(reverse('index'))
-        else:
-            print(form.errors)
-
     else:
         form = UserLoginForm()
     context = {
@@ -33,7 +32,6 @@ def login(request):
         'mini_basket': mini_basket,
         "insta": insta,
         "form": form,
-
     }
     return render(request, 'users/sing_in.html', context)
 
@@ -43,9 +41,8 @@ def register(request):
         form = UserRegisterForm(data=request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Вы успешно зарегестрировались')
             return HttpResponseRedirect(reverse('users:login'))
-        else:
-            print(form.errors)
     else:
         form = UserRegisterForm()
     context = {
@@ -62,3 +59,16 @@ def register(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+
+@login_required
+def profile(request):
+    form = UserProfileForm
+    context = {
+        'title': 'Profile',
+        'category': category,
+        'mini_basket': mini_basket,
+        "insta": insta,
+        'form': form
+    }
+    return render(request, 'users/profile.html', context)

@@ -1,37 +1,27 @@
 [
   {
-    "model": "mainapp.productcategory",
+
     "pk": 1,
-    "fields": {
-      "name": "Автокресла"
-    }
+    "name": "Автокресла"
   },
   {
-    "model": "mainapp.productcategory",
+
     "pk": 2,
-    "fields": {
-      "name": "Прогулка"
-    }
+    "name": "Прогулка"
   },
   {
-    "model": "mainapp.productcategory",
+
     "pk": 3,
-    "fields": {
-      "name": "Кормление"
-    }
+    "name": "Кормление"
   },
   {
-    "model": "mainapp.productcategory",
+
     "pk": 4,
-    "fields": {
-      "name": "Комната"
-    }
+    "name": "Комната"
   },
   {
-    "model": "mainapp.productcategory",
+
     "pk": 5,
-    "fields": {
-      "name": "Забота и уход"
-    }
+    "name": "Забота и уход"
   }
 ]

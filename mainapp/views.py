@@ -23,9 +23,6 @@ def index(request):
     product_most = Product.objects.filter(status='most')[:5]
     product_sale = Product.objects.filter(status='sale')[:5]
     category = ProductCategory.objects.all()
-
-
-
     context = {
         'title': 'happybabby-Главная',
         'category': category,
@@ -46,7 +43,7 @@ def products(request, category_id):
     category = ProductCategory.objects.all()
     current_category = ProductCategory.objects.get(pk=category_id)
     context = {
-        'title': f'happybabby-{current_category}',
+        'title': current_category,
         'category': category,
         'mini_basket': mini_basket,
         "insta": insta,

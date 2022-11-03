@@ -37,25 +37,19 @@
                                             </div>
                                         {% endif %}
                                         <div class="login-item">
-                                             <h5 class="title-login">Зарегистрироватся</h5>
                                              <form class="register" method="post" action="{% url 'users:register' %}">
                                                 {% csrf_token %}
                                                  <p class="form-row form-row-wide">
 
                                                         <label class="text">Email</label>
                                                         {{ form.email }}
-
-
-                                                         <label class="text">Логин</label>
-                                                        {{ form.username }}
-
                                                  </p>
 
                                                  <p class="form-row form-row-wide">
 
 
                                                         <label class="text">Имя</label>
-                                                            {{ form.first_name }}
+                                                            {{ form.username }}
 
 
                                                          <label class="text">Фамилия</label>
@@ -77,7 +71,7 @@
 
                                                  <p class="form-row ">
 
-                                                        <input type="submit" class="button-submit" value="Register Now">
+                                                        <input type="submit" class="button-submit" value="Регистрация">
 
                                                 </p>
 

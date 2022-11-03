@@ -13790,7 +13790,8 @@ a:active,
 }
 
 .product-item .product-inner img {
-    width: 100%;
+    width: 150px;
+    height:170px;
 }
 
 @font-face {

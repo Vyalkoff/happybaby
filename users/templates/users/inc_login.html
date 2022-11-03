@@ -1,7 +1,7 @@
 <div class="top-bar-right">
         {% if user.is_authenticated %}
             <ul class="header-user-links">
-            <li>Вы вошли <span style="font-weight: bold">{{ user.first_name }}</span>  / <a href="{%  url 'users:logout' %}">Выйти</a></li>
+            <li>Вы вошли <a href="{% url 'users:profile' %}"><span style="font-weight: bold">{{ user.username }}</span> </a> / <a href="{%  url 'users:logout' %}">Выйти</a></li>
 
           </ul>
         {% else %}
