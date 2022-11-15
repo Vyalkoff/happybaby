@@ -2,7 +2,6 @@ from django.shortcuts import render
 from pathlib import Path
 import json
 from mainapp.models import Product, ProductCategory
-from users.models import User
 
 
 def openfile(file_json):
@@ -12,7 +11,6 @@ def openfile(file_json):
     return js_prod
 
 
-menu = openfile('menu.json')
 mini_basket = openfile('basket.json')
 insta = openfile('insta.json')
 
@@ -32,8 +30,6 @@ def index(request):
         "product_most": product_most,
         "product_sale": product_sale,
 
-
-
     }
     return render(request, 'mainapp/index.html', context)
 
@@ -49,6 +45,21 @@ def products(request, category_id):
         "insta": insta,
         "product": product,
         'current_category': current_category
+
+    }
+    return render(request, 'mainapp/products.html', context)
+
+
+def product_all(request):
+    product = Product.objects.filter(status='most')
+    category = ProductCategory.objects.all()
+    context = {
+        'title': 'Популярные',
+        'category': category,
+        'mini_basket': mini_basket,
+        "insta": insta,
+        "product": product,
+        'current_category': 'Популярные'
 
     }
     return render(request, 'mainapp/products.html', context)

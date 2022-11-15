@@ -63,7 +63,15 @@ def logout(request):
 
 @login_required
 def profile(request):
-    form = UserProfileForm
+    if request.method == 'POST':
+        form = UserProfileForm(data=request.POST, instance=request.user, files=request.FILES)
+        if form.is_valid():
+            print(form.errors)
+            form.save()
+            messages.success(request, 'Данные сохранены')
+            return HttpResponseRedirect(reverse('users:profile'))
+    else:
+        form = UserProfileForm(instance=request.user)
     context = {
         'title': 'Profile',
         'category': category,

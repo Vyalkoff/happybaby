@@ -30,10 +30,13 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                          {% if form.errors %}
                                             <div class="alert alert-warning alert-dismissable  show" role="alert">
-                                                {{ form.errors|escape }}
                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                     <span aria-hidden="true">x</span>
                                                 </button>
+                                            {% for _,error in form.errors.items %}
+                                                    {{ error }}
+                                            {% endfor %}
+
                                             </div>
                                         {% endif %}
                                         <div class="login-item">

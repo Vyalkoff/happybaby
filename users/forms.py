@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from .models import User
-from django.forms import modelform_factory
+from django import forms
+from django.core.exceptions import ValidationError
 
 
 class UserLoginForm(AuthenticationForm):
@@ -17,6 +18,8 @@ class UserLoginForm(AuthenticationForm):
 
 
 class UserRegisterForm(UserCreationForm):
+    error_messages = {'password_mismatch': 'Пароли не совпадают'}
+
     class Meta:
         model = User
         fields = ('username', 'last_name', 'email', 'password1', 'password2')
@@ -32,8 +35,30 @@ class UserRegisterForm(UserCreationForm):
             field.widget.attrs['class'] = 'form-control py-4'
 
 
-UserProfileForm = modelform_factory(User,
-                                    fields=('avatar', 'first_name', 'last_name', 'address', 'email',),
-                                    labels={'first_name': 'Имя', 'last_name': 'Фамилия',
-                                            'avatar': 'Выберите изображение', 'address': 'Адрес доставки',
-                                            'email': 'Email'})
+class UserProfileForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ('avatar', 'username', 'last_name', 'address', 'email',)
+        labels = {'avatar': 'Выберите изображение', 'username': 'Имя', 'last_name': 'Фамилия',
+                  'address': 'Адрес доставки',
+                  'email': 'Email'}
+        widgets = {'avatar': forms.widgets.FileInput()}
+        help_texts = {'username': False}
+
+    def clean(self):
+        errors = {}
+        type_place = [self.cleaned_data['username'], self.cleaned_data['last_name']]
+        for id, item in enumerate(type_place):
+            if any(map(str.isdigit, item)):
+                if not id:
+                    errors['username'] = ValidationError(f'Недопустимые символы в {item}')
+                else:
+                    errors['last_name'] = ValidationError(f'Недопустимые символы в {item}')
+        if errors:
+            raise ValidationError(errors)
+
+    def clean_avatar(self):
+        data = self.cleaned_data['avatar']
+        if data.size > 8 ** 6:
+            raise ValidationError('Большой файл')
+        return data

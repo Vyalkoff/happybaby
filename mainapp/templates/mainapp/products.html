@@ -67,9 +67,11 @@
                                                 <div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div>
                                             </div>
                                             <a href="#" class="button quick-wiew-button">Quick View</a>
+                                            <a href="{% url 'basket:add_basket' item.id %}">
                                             <div class="loop-form-add-to-cart">
-                                                <button class="single_add_to_cart_button button">Add to cart</button>
+                                                <span class="single_add_to_cart_button button"></span>
                                             </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
