@@ -1,3 +1,4 @@
+from basketapp.models import BasketItem
 from mainapp.models import ProductCategory
 from mainapp.views import openfile
 from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
@@ -63,6 +64,7 @@ def logout(request):
 
 @login_required
 def profile(request):
+    basket = BasketItem.get_basket(request.user)
     if request.method == 'POST':
         form = UserProfileForm(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
@@ -75,7 +77,7 @@ def profile(request):
     context = {
         'title': 'Profile',
         'category': category,
-        'mini_basket': mini_basket,
+        'basket': basket,
         "insta": insta,
         'form': form
     }

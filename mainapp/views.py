@@ -2,6 +2,7 @@ from django.shortcuts import render
 from pathlib import Path
 import json
 from mainapp.models import Product, ProductCategory
+from basketapp.models import BasketItem
 
 
 def openfile(file_json):
@@ -21,10 +22,11 @@ def index(request):
     product_most = Product.objects.filter(status='most')[:5]
     product_sale = Product.objects.filter(status='sale')[:5]
     category = ProductCategory.objects.all()
+    basket = BasketItem.get_basket(request.user)
     context = {
         'title': 'happybabby-Главная',
         'category': category,
-        'mini_basket': mini_basket,
+        'basket': basket,
         "insta": insta,
         "product_new": product_new,
         "product_most": product_most,
@@ -38,10 +40,11 @@ def products(request, category_id):
     product = Product.objects.filter(category=category_id)
     category = ProductCategory.objects.all()
     current_category = ProductCategory.objects.get(pk=category_id)
+    basket = BasketItem.get_basket(request.user)
     context = {
         'title': current_category,
         'category': category,
-        'mini_basket': mini_basket,
+        'basket': basket,
         "insta": insta,
         "product": product,
         'current_category': current_category
@@ -53,10 +56,11 @@ def products(request, category_id):
 def product_all(request):
     product = Product.objects.filter(status='most')
     category = ProductCategory.objects.all()
+    basket = BasketItem.get_basket(request.user)
     context = {
         'title': 'Популярные',
         'category': category,
-        'mini_basket': mini_basket,
+        'basket': basket,
         "insta": insta,
         "product": product,
         'current_category': 'Популярные'
@@ -67,10 +71,11 @@ def product_all(request):
 
 def details_product(request):
     category = ProductCategory.objects.all()
+    basket = BasketItem.get_basket(request.user)
     context = {
         'title': 'happybabby',
         'category': category,
-        'mini_basket': mini_basket,
+        'basket': basket,
         "insta": insta,
     }
     return render(request, 'mainapp/product_details.html', context)

@@ -69,7 +69,7 @@
           </div>
           <div class="col-lg-2 col-sm-12 col-md-3 col-xs-12 col-ts-12">
             <div class="header-control">
-              <div class="block-minicart moorabi-mini-cart block-header"><a href="{% url 'basket:index' %}" class="shopcart-icon" data-moorabi="moorabi-dropdown">Корзина<span class="count">0</span></a>
+              <div class="block-minicart moorabi-mini-cart block-header"><a href="{% url 'basket:index' %}" class="shopcart-icon" data-moorabi="moorabi-dropdown"><span class="count">{% if basket %} {{ basket.first.total_quantity }} {% else %} 0 {% endif %}</span></a>
               </div>
               <div class="block-account block-header moorabi-dropdown"><a href="javascript:void(0);" data-moorabi="moorabi-dropdown"><span class="flaticon-profile"></span></a>
                 <div class="header-account moorabi-submenu">

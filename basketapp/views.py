@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from mainapp.views import insta
 from mainapp.models import ProductCategory, Product
@@ -5,6 +6,7 @@ from .models import BasketItem
 
 
 # Create your views here.
+
 def basket(request):
     category = ProductCategory.objects.all()
     basket = BasketItem.objects.all()
@@ -19,6 +21,7 @@ def basket(request):
     return render(request, 'basketapp/checkout.html', context)
 
 
+@login_required
 def add_basket(request, id_product):
     product = get_object_or_404(Product, id=id_product)
     basket = BasketItem.get_basket(request.user, product).first()
@@ -30,7 +33,8 @@ def add_basket(request, id_product):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
+@login_required
 def remove_basket(request, id_product):
-    basket = get_object_or_404(BasketItem, product=id_product)
+    basket = BasketItem.objects.get(id=id_product)
     basket.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
