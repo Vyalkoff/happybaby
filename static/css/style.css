@@ -1680,7 +1680,7 @@ table tr:last-child th {
 /* -------------------- */
 /*header-style-1*/
 .header .main-header {
-    padding: 50px 0;
+    padding: 30px 0;
 }
 
 .social-header,
@@ -12177,104 +12177,10 @@ iframe {
     }
 
     /*==========home 07=========*/
-    .header .main-header {
-        padding: 40px 0 37px;
-    }
 
-    .header.style7 .header-nav-container,
-    .header.style7 .header-nav-wapper {
-        display: none;
-    }
-
-    .header.style7 .header-control {
-        padding-top: 0;
-    }
-
-    .slider-item.style19 .slider-inner .slider-infor,
-    .slider-item.style20 .slider-inner .slider-infor,
-    .slider-item.style21 .slider-inner .slider-infor {
-        padding-left: 300px;
-    }
 
     /*==========home 08=========*/
-    .header.style8 .header-control .block-header .moorabi-submenu {
-        left: auto;
-    }
 
-    .item-banner.style20 .title {
-        font-size: 30px;
-    }
-
-    .item-banner.style20 .code .nummer-code {
-        font-size: 15px;
-    }
-
-    .item-banner.style21 .banner-content {
-        padding-left: 500px;
-        padding-top: 80px;
-        padding-bottom: 80px;
-    }
-
-    .item-banner.style21 .group-pinap .btn-pinmap-1 {
-        left: 360px;
-    }
-
-    /*==========home 09=========*/
-    /*herder*/
-    .header.style9 .bar-open-menu {
-        display: none;
-    }
-
-    .header.style9 .header-control {
-        padding-top: 0;
-    }
-
-    .header.style9 .block-search .moorabi-submenu {
-        right: 0;
-        left: auto;
-    }
-
-    .slider-item.style13 .slider-inner .slider-infor,
-    .slider-item.style14 .slider-inner .slider-infor,
-    .slider-item.style15 .slider-inner .slider-infor {
-        padding-left: 450px;
-    }
-
-    .slider-item.style13 .pinmap-buttom.btn-pinmap-1 {
-        top: 260px;
-        left: 340px;
-    }
-
-    .slider-item.style13 .pinmap-buttom.btn-pinmap-2 {
-        left: 230px;
-    }
-
-    .slider-item.style14 .pinmap-buttom.btn-pinmap-1 {
-        top: 270px;
-        left: 345px;
-    }
-
-    .slider-item.style14 .pinmap-buttom.btn-pinmap-2 {
-        left: 300px;
-    }
-
-    .slider-item.style15 .pinmap-buttom.btn-pinmap-1 {
-        left: 390px;
-    }
-
-    .item-banner.style15 .banner-content,
-    .item-banner.style13 .banner-content,
-    .item-banner.style14 .banner-content,
-    .item-banner.style16 .banner-content {
-        padding-left: 15px;
-        padding-right: 15px;
-        text-align: center;
-    }
-
-    .item-banner.style12 .banner-content {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
 
     /*==========home 10=========*/
     .header.style10 .logo {
@@ -13884,7 +13790,8 @@ a:active,
 }
 
 .product-item .product-inner img {
-    width: 100%;
+    width: 150px;
+    height:170px;
 }
 
 @font-face {
