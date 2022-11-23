@@ -51,6 +51,11 @@
 
                                     <form class="login" action="{% url 'users:login' %}" method="post">
                                         {% csrf_token %}
+                                        {% if next %}
+                                            <input type="hidden" name="next" value="{{ next }}">
+
+
+                                        {% endif %}
 
 
                                         <div class="social-account"><h6 class="title-social">Социальная сеть</h6><a

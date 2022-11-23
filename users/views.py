@@ -4,7 +4,7 @@ from mainapp.views import openfile
 from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
 from django.contrib import auth
 from django.urls import reverse
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect,HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -16,6 +16,7 @@ category = ProductCategory.objects.all()
 # Create your views here.
 
 def login(request):
+    next = request.GET['next'] if 'next' in request.GET.keys() else ''
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
@@ -24,15 +25,19 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user.is_active:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('index'))
-    else:
-        form = UserLoginForm()
+                if 'next' in request.POST.keys():
+                    return HttpResponseRedirect(request.POST['next'])
+                else:
+                    return HttpResponseRedirect(reverse('index'))
+
+    form = UserLoginForm()
     context = {
         'title': 'happybabby-login',
         'category': category,
         'mini_basket': mini_basket,
         "insta": insta,
         "form": form,
+        'next': next,
     }
     return render(request, 'users/sing_in.html', context)
 
