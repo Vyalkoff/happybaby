@@ -46,6 +46,7 @@ def remove_basket(request, id_product):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
+@login_required()
 def basket_edit(request, id, quantity):
     if request.META.get('HTTP_X_REQUESTED_WITH') == "XMLHttpRequest":
         baskets = BasketItem.objects.get(id=id)
@@ -59,5 +60,6 @@ def basket_edit(request, id, quantity):
             'basket': baskets
         }
         result = render_to_string('basketapp/basket_product.html', context)
-        return JsonResponse({'result': result})
+        total_result = render_to_string('basketapp/mini_basket.html', context)
+        return JsonResponse({'result': result, 'quantity': total_result})
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
