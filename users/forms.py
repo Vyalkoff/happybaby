@@ -32,19 +32,27 @@ class UserRegisterForm(UserCreationForm):
         self.fields['password1'].widget.attrs['placeholder'] = 'Введите пароль'
         self.fields['password2'].widget.attrs['placeholder'] = 'Повторите пароль'
         for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control py-4'
+            field.widget.attrs['class'] = 'form-control'
 
 
 class UserProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('avatar', 'username', 'last_name', 'address', 'email',)
-        labels = {'avatar': 'Выберите изображение', 'username': 'Имя', 'last_name': 'Фамилия',
+        labels = { 'username': 'Имя', 'last_name': 'Фамилия',
                   'address': 'Адрес доставки',
                   'email': 'Email'}
         widgets = {'avatar': forms.widgets.FileInput()}
         help_texts = {'username': False}
-
+    def __init__(self,*args,**kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['placeholder'] = 'Введите имя'
+        self.fields['last_name'].widget.attrs['placeholder'] = 'Введите фамилию '
+        self.fields['email'].widget.attrs['placeholder'] = 'Введите email '
+        self.fields['address'].widget.attrs['placeholder'] = 'Введите адрес'
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control py-4'
+        self.fields['avatar'].widget.attrs['class'] = 'custom-file-input'
     def clean(self):
         errors = {}
         type_place = [self.cleaned_data['username'], self.cleaned_data['last_name']]
@@ -59,6 +67,9 @@ class UserProfileForm(UserChangeForm):
 
     def clean_avatar(self):
         data = self.cleaned_data['avatar']
-        if data.size > 8 ** 6:
+        if  data and data.size > 8 ** 6:
             raise ValidationError('Большой файл')
         return data
+
+
+
