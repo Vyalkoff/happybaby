@@ -4,177 +4,138 @@
 <head>
     <title>
         {% block title %}
-
+            {{ title|title }}
         {% endblock %}
     </title>
 
-{% block css %}
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}" />
+    {% block css %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}"/>
 
-  <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
-  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}">
-  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css'%}">
-  <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
-  <link rel="stylesheet" href="{% static 'css/slick.css' %}">
-  <link rel="stylesheet" href="{% static 'css/chosen.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/pe-icon-7-stroke.css' %}">
-  <link rel="stylesheet" href="{% static 'css/magnific-popup.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/jquery.scrollbar.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/mobile-menu.css' %}">
-  <link rel="stylesheet" href="{% static 'fonts/flaticon/flaticon.css' %}">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-{% endblock %}
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900&display=swap"
+              rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+        <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'css/chosen.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/pe-icon-7-stroke.css' %}">
+        <link rel="stylesheet" href="{% static 'css/magnific-popup.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/jquery.scrollbar.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mobile-menu.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/flaticon/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
 
 
 </head>
 <body>
 <header class="header style7">
     <div class="top-bar">
-      <div class="container">
-        <div class="top-bar-left">
-          <div class="header-message"> Добро пожаловать в наш интернет магазин!</div>
+        <div class="container">
+            <div class="top-bar-left">
+                <div class="header-message">Ваш город <a href="#">Актау</a></div>
+            </div>
+
+
+            {% include 'users/inc_login.html' %}
         </div>
-        <div class="top-bar-right">
-{#          <div class="header-language">#}
-{#            <div class="moorabi-language moorabi-dropdown"><a href="#" class="active language-toggle" data-moorabi="moorabi-dropdown"><span>										English (USD)</span></a>#}
-{#              <ul class="moorabi-submenu">#}
-{#                <li class="switcher-option"><a href="#"><span> Русский (RUB)</span></a></li>#}
-{#                <li class="switcher-option"><a href="#"><span>Japanese (JPY)</span></a></li>#}
-{#              </ul>#}
-{#            </div>#}
-{#          </div>#}
-          <ul class="header-user-links">
-            <li><a href="#">Войти/Регистрация</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
     <div class="container">
-      <div class="main-header">
-        <div class="row">
-          <div class="col-lg-3 col-sm-4 col-md-3 col-xs-7 col-ts-12 header-element">
-            <div class="logo">
-              <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="img"></a>
-            </div>
-          </div>
-          <div class="col-lg-7 col-sm-8 col-md-6 col-xs-5 col-ts-12">
-            <div class="block-search-block">
-              <form class="form-search form-search-width-category">
-                <div class="form-content">
-
-                  <div class="inner">
-                    <input type="text" class="input" name="s" value="" placeholder="Поиск">
-                  </div>
-                  <button class="btn-search" type="submit"><span class="icon-search"></span></button>
+        <div class="main-header">
+            <div class="row">
+                <div class="col-lg-3 col-sm-4 col-md-3 col-xs-7 col-ts-12 header-element">
+                    <div class="logo">
+                        <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="img"></a>
+                    </div>
                 </div>
-              </form>
-            </div>
-          </div>
-          <div class="col-lg-2 col-sm-12 col-md-3 col-xs-12 col-ts-12">
-            <div class="header-control">
-              <div class="block-minicart moorabi-mini-cart block-header moorabi-dropdown"><a href="javascript:void(0);" class="shopcart-icon" data-moorabi="moorabi-dropdown">Корзина<span class="count">0</span></a>
-                <div class="shopcart-description moorabi-submenu">
-                  <div class="content-wrap">
-                    <h3 class="title">Корзина</h3>
-                    <ul class="minicart-items">
-                        {% for cart in mini_basket.product %}
-                          <li class="product-cart mini_cart_item">
-                            <a href="#" class="product-media"><img src="{% static cart.img %}" alt="img"></a>
-                            <div class="product-details">
-                              <h5 class="product-name"><a href="#">{{ cart.name }}</a></h5>
-                              <div class="variations">
-                                  <span class="attribute_color">
-                                      <a href="#">{{ cart.attribute_color }}</a>
-                                  </span>,
-                                  <span class="attribute_size">
-                                      <a href="#">{{ cart.attribute_size }}</a>
-                                  </span>
-                              </div>
-                                <span class="product-price">
-                                    <span class="price">
-                                <span>{{ cart.price }}
-                                </span>
-                                    </span>
-                                </span>
-                                <span class="product-quantity">{{ cart.product_quantity }}</span>
-                              <div class="product-remove"><a href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
+
+                <div class="col-lg-7 col-sm-8 col-md-6 col-xs-5 col-ts-12">
+                    <div class="block-search-block">
+                        <form class="form-search form-search-width-category">
+                            <div class="form-content">
+
+                                <div class="inner">
+                                    <input type="text" class="input" name="s" value="" placeholder="Поиск">
+                                </div>
+                                <button class="btn-search" type="submit"><span class="icon-search"></span></button>
                             </div>
-                          </li>
-                        {% endfor %}
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-12 col-md-3 col-xs-12 col-ts-12">
+                    <div class="header-control">
+                        {% include 'basketapp/mini_basket.html' %}
 
-                    </ul>
-                    <div class="subtotal"><span class="total-title">Итого:</span><span class="total-price">
-                        <span class="Price-amount">														$135</span></span>
-                    </div>
-                    <div class="actions"><a class="button button-viewcart" href="#"><span>Посмотреть сумку</span></a>
-                        <a href="#" class="button button-checkout"><span>Оформить</span></a>
-                    </div>
-                  </div>
+                        <div class="block-account block-header moorabi-dropdown"><a href="javascript:void(0);"
+                                                                                    data-moorabi="moorabi-dropdown"><span
+                                class="flaticon-profile"></span></a>
+                            <div class="header-account moorabi-submenu">
+                                <div class="header-user-form-tabs">
+                                    <ul class="tab-link">
+                                        <li class="active"><a data-toggle="tab" aria-expanded="true"
+                                                              href="#header-tab-login">Логин</a></li>
+                                        <li><a data-toggle="tab" aria-expanded="true" href="#header-tab-rigister">Регистрация</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-container">
+                                        <div id="header-tab-login" class="tab-panel active">
+                                            <form method="post" class="login form-login">
+                                                <p class="form-row form-row-wide">
+                                                    <input type="email" placeholder="Email" class="input-text">
+                                                </p>
+                                                <p class="form-row form-row-wide">
+                                                    <input type="password" class="input-text" placeholder="Password">
+                                                </p>
+                                                <p class="form-row">
+                                                    <label class="form-checkbox">
+                                                        <input type="checkbox" class="input-checkbox"><span>Запомнить меня</span></label>
+                                                    <input type="submit" class="button" value="Войти">
+                                                </p>
+                                                <p class="lost_password"><a href="#">Забыли пароль?</a></p>
+                                            </form>
+                                        </div>
+                                        <div id="header-tab-rigister" class="tab-panel">
+                                            <form method="post" class="register form-register">
+                                                <p class="form-row form-row-wide">
+                                                    <input type="email" placeholder="Email" class="input-text">
+                                                </p>
+                                                <p class="form-row form-row-wide">
+                                                    <input type="password" class="input-text" placeholder="Password">
+                                                </p>
+                                                <p class="form-row">
+                                                    <input type="submit" class="button" value="Регистрация">
+                                                </p>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="menu-bar mobile-navigation menu-toggle"
+                           href="#"><span></span><span></span><span></span></a></div>
                 </div>
-              </div>
-              <div class="block-account block-header moorabi-dropdown"><a href="javascript:void(0);" data-moorabi="moorabi-dropdown"><span class="flaticon-profile"></span></a>
-                <div class="header-account moorabi-submenu">
-                  <div class="header-user-form-tabs">
-                    <ul class="tab-link">
-                      <li class="active"><a data-toggle="tab" aria-expanded="true" href="#header-tab-login">Логин</a></li>
-                      <li><a data-toggle="tab" aria-expanded="true" href="#header-tab-rigister">Регистрация</a></li>
-                    </ul>
-                    <div class="tab-container">
-                      <div id="header-tab-login" class="tab-panel active">
-                        <form method="post" class="login form-login">
-                          <p class="form-row form-row-wide">
-                            <input type="email" placeholder="Email" class="input-text">
-                          </p>
-                          <p class="form-row form-row-wide">
-                            <input type="password" class="input-text" placeholder="Password">
-                          </p>
-                          <p class="form-row">
-                            <label class="form-checkbox">
-                              <input type="checkbox" class="input-checkbox"><span>Запомнить меня</span></label>
-                            <input type="submit" class="button" value="Войти">
-                          </p>
-                          <p class="lost_password"><a href="#">Забыли пароль?</a></p>
-                        </form>
-                      </div>
-                      <div id="header-tab-rigister" class="tab-panel">
-                        <form method="post" class="register form-register">
-                          <p class="form-row form-row-wide">
-                            <input type="email" placeholder="Email" class="input-text">
-                          </p>
-                          <p class="form-row form-row-wide">
-                            <input type="password" class="input-text" placeholder="Password">
-                          </p>
-                          <p class="form-row">
-                            <input type="submit" class="button" value="Регистрация">
-                          </p>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div><a class="menu-bar mobile-navigation menu-toggle" href="#"><span></span><span></span><span></span></a></div>
-          </div>
+            </div>
         </div>
-      </div>
     </div>
     <div class="header-nav-container rows-space-20">
-      <div class="container">
-        <div class="header-nav-wapper main-menu-wapper">
-          <div class="vertical-wapper block-nav-categori">
-          <div class="block-title"><span class="icon-bar"><span></span><span></span><span></span></span><span class="text">Все Категории</span></div>
-              <div class="block-content verticalmenu-content">
-                  <ul class="moorabi-nav-vertical vertical-menu moorabi-clone-mobile-menu">
-                                {% for menu_value in category.menu %}
+        <div class="container">
+            <div class="header-nav-wapper main-menu-wapper">
+                <div class="vertical-wapper block-nav-categori">
+                    <div class="block-title"><span class="icon-bar"><span></span><span></span><span></span></span><span
+                            class="text">Категории</span></div>
+                    <div class="block-content verticalmenu-content">
+                        <ul class="moorabi-nav-vertical vertical-menu moorabi-clone-mobile-menu">
+                            {% for menu_value in category %}
 
-                                     {% if 'child' in menu_value %}
+                                {% comment %}{% if 'child' in menu_value %}
                                           <li class="menu-item menu-item-has-children">
-                                              <a title="{{ menu_value.title }}" href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
+                                              <a  href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
                                               <span class="toggle-submenu"></span>
                                             <ul role="menu" class=" submenu">
                                                     {% for child_menu in menu_value.child %}
@@ -182,74 +143,83 @@
                                                     {% endfor %}
                                             </ul>
                                           </li>
-                                    {% else %}
-                                          <li class="menu-item ">
-                                              <a title="{{ menu_value.title }}" href="{% url 'products:index' %}" class="moorabi-menu-item-title">{{ menu_value.name }}</a>
-                                              <span class="toggle-submenu"></span>
-                                          </li>
-                                    {% endif %}
+                                    {% else %}{% endcomment %}
+                                <li class="menu-item ">
+                                    <a title="Категория" href="{% url 'products:products' menu_value.pk %}"
+                                       class="moorabi-menu-item-title">{{ menu_value.name }}</a>
+                                    <span class="toggle-submenu"></span>
+                                </li>
 
 
-                                {%endfor%}
-                          </ul>
-                        </div>
-                      </div>
 
-          <div class="header-nav">
-            <div class="container-wapper">
-              <ul class="moorabi-clone-mobile-menu moorabi-nav main-menu " id="menu-main-menu">
-                <li class="menu-item  menu-item-has-children"><a href='{% url 'index' %}' class="moorabi-menu-item-title" title="Home">Главная</a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
 
-                </li>
-                <li class="menu-item  menu-item-has-children"><a href="#" class="moorabi-menu-item-title" title="Blogs">Статьи</a><span class="toggle-submenu"></span>
-                </li>
-                <li class="menu-item"><a href="#" class="moorabi-menu-item-title" title="About">О нас</a></li>
-              </ul>
+                <div class="header-nav">
+                    <div class="container-wapper">
+                        <ul class="moorabi-clone-mobile-menu moorabi-nav main-menu " id="menu-main-menu">
+                            <li class="menu-item  menu-item-has-children"><a href="{% url 'index' %}"
+                                                                             class="moorabi-menu-item-title"
+                                                                             title="Home">Главная</a>
+
+                            </li>
+                            <li class="menu-item  menu-item-has-children"><a href="#" class="moorabi-menu-item-title"
+                                                                             title="Blogs">Статьи</a><span
+                                    class="toggle-submenu"></span>
+                            </li>
+                            <li class="menu-item"><a href="#" class="moorabi-menu-item-title" title="About">О нас</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 <div class="header-device-mobile">
     <div class="wapper">
-      <div class="item mobile-logo">
-        <div class="logo">
-          <a href="#"><img src="{% static '/images/logo.png' %}" alt="img"></a>
+        <div class="item mobile-logo">
+            <div class="logo">
+                <a href="#"><img src="{% static '/images/logo.png' %}" alt="img"></a>
+            </div>
         </div>
-      </div>
-      <div class="item item mobile-search-box has-sub"><a href="#"><span class="icon"><i class="fa fa-search" aria-hidden="true"></i></span></a>
-        <div class="block-sub"><a href="#" class="close"><i class="fa fa-times" aria-hidden="true"></i></a>
-          <div class="header-searchform-box">
-            <form class="header-searchform">
-              <div class="searchform-wrap">
-                <input type="text" class="search-input" placeholder="Enter keywords to search...">
-                <input type="submit" class="submit button" value="Search">
-              </div>
-            </form>
-          </div>
+        <div class="item item mobile-search-box has-sub"><a href="#"><span class="icon"><i class="fa fa-search"
+                                                                                           aria-hidden="true"></i></span></a>
+            <div class="block-sub"><a href="#" class="close"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <div class="header-searchform-box">
+                    <form class="header-searchform">
+                        <div class="searchform-wrap">
+                            <input type="text" class="search-input" placeholder="Enter keywords to search...">
+                            <input type="submit" class="submit button" value="Search">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="item mobile-settings-box has-sub"><a href="#"><span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span></a>
-        <div class="block-sub"><a href="#" class="close"><i class="fa fa-times" aria-hidden="true"></i></a>
-          <div class="block-sub-item">
-            <h5 class="block-item-title">Currency</h5>
-            <form class="currency-form moorabi-language">
-              <ul class="moorabi-language-wrap">
-                <li class="active"><a href="#"><span>English (USD)</span></a></li>
-                <li><a href="#"><span>French (EUR)</span></a></li>
-                <li><a href="#"><span>Japanese (JPY)</span></a></li>
-              </ul>
-            </form>
-          </div>
+        <div class="item mobile-settings-box has-sub"><a href="#"><span class="icon"><i class="fa fa-cog"
+                                                                                        aria-hidden="true"></i></span></a>
+            <div class="block-sub"><a href="#" class="close"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <div class="block-sub-item">
+                    <h5 class="block-item-title">Currency</h5>
+                    <form class="currency-form moorabi-language">
+                        <ul class="moorabi-language-wrap">
+                            <li class="active"><a href="#"><span>English (USD)</span></a></li>
+                            <li><a href="#"><span>French (EUR)</span></a></li>
+                            <li><a href="#"><span>Japanese (JPY)</span></a></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="item menu-bar"><a class=" mobile-navigation  menu-toggle" href="#"><span></span><span></span><span></span></a></div>
+        <div class="item menu-bar"><a class=" mobile-navigation  menu-toggle"
+                                      href="#"><span></span><span></span><span></span></a></div>
     </div>
-  </div>
+</div>
 {% block content %}
 
-{% endblock %}
+{% endblock content %}
 <div class="instagram-wrapp">
     <div>
         <h3 class="custommenu-title-blog"><i class="fa fa-instagram" aria-hidden="true"></i> INSTAGRAM</h3>
@@ -257,13 +227,13 @@
             <div class="instagram owl-slick equal-container"
                  data-slick='{"autoplay":false, "autoplaySpeed":1000, "arrows":false, "dots":false, "infinite":true, "speed":800, "rows":1}'
                  data-responsive='[{"breakpoint":"2000","settings":{"slidesToShow":5}},{"breakpoint":"1200","settings":{"slidesToShow":4}},{"breakpoint":"992","settings":{"slidesToShow":3}},{"breakpoint":"768","settings":{"slidesToShow":2}},{"breakpoint":"481","settings":{"slidesToShow":2}}]'>
-                {% for photo in insta.photo  %}
+                {% for photo in insta.photo %}
                     <div class="item-instagram">
-                    <a href="#"><img src="{% static photo %}" alt="img"></a>
-                    <span class="text">
+                        <a href="#"><img src="{% static photo %}" alt="img"></a>
+                        <span class="text">
                         <i class="icon flaticon-instagram" aria-hidden="true"></i>
                     </span>
-                </div>
+                    </div>
                 {% endfor %}
 
 
@@ -273,92 +243,105 @@
 </div>
 {% block footer %}
     <footer class="footer style7">
-    <div class="container">
-      <div class="container-wapper">
-        <div class="row">
-          <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            <div class="widget-box">
-              <div class="single-img">
-                <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="img"></a>
-              </div>
-              <div class="desc-footer"><span>C</span>Lorem ipsum dolor sit amet litam consectetur adipiscing elit, facilisi vivamus proin lit laoreet phasel alilus porttitor inter, facilisis condiment tarime egestas rhoncus dapibus iaculis alemir. Bibendum commodo risus.</div>
+        <div class="container">
+            <div class="container-wapper">
+                <div class="row">
+                    <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="widget-box">
+                            <div class="single-img">
+                                <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="img"></a>
+                            </div>
+                            <div class="desc-footer"><span>C</span>Lorem ipsum dolor sit amet litam consectetur
+                                adipiscing elit, facilisi vivamus proin lit laoreet phasel alilus porttitor inter,
+                                facilisis condiment tarime egestas rhoncus dapibus iaculis alemir. Bibendum commodo
+                                risus.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-2">
+                        <div class="moorabi-custommenu default">
+                            <h2 class="widgettitle">Quick Menu</h2>
+                            <ul class="menu">
+                                {% for menu in category.quick_menu %}
+                                    <li class="menu-item"><a href="#">{{ menu.name }}</a></li>
+                                {% endfor %}
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-2">
+                        <div class="moorabi-custommenu default">
+                            <h2 class="widgettitle">Information</h2>
+                            <ul class="menu">
+                                {% for info in category.info %}
+                                    <li class="menu-item"><a href="#">{{ info.name }}</a></li>
+                                {% endfor %}
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="moorabi-newsletter style1">
+                            <div class="newsletter-head">
+                                <h3 class="title">Письма</h3></div>
+                            <div class="newsletter-form-wrap">
+                                <div class="list">Get notified of new products, limited releases, and more.</div>
+                                <input type="email" class="input-text email email-newsletter"
+                                       placeholder="Your email letter">
+                                <button class="button btn-submit submit-newsletter">Подписаться</button>
+                            </div>
+                        </div>
+                        <div class="moorabi-socials">
+                            <ul class="socials">
+                                <li><a href="#" class="social-item" target="_blank"><i class="icon fa fa-facebook"></i></a>
+                                </li>
+                                <li><a href="#" class="social-item" target="_blank"><i
+                                        class="icon fa fa-twitter"></i></a></li>
+                                <li><a href="#" class="social-item" target="_blank"><i class="icon fa fa-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 border-custom"><span></span></div>
+                </div>
+                <div class="footer-end">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="coppyright"> Copyright © 2022 <a href="https://github.com/Vyalkoff">Vlad</a> .
+                                All rights reserved
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="moorabi-payment"><img src="{% static 'images/payments.png' %}" alt="img"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-2">
-            <div class="moorabi-custommenu default">
-              <h2 class="widgettitle">Quick Menu</h2>
-              <ul class="menu">
-                  {% for menu in category.quick_menu  %}
-                     <li class="menu-item"><a href="#">{{ menu.name }}</a></li>
-                  {% endfor %}
-
-
-
-              </ul>
-            </div>
-          </div>
-          <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-2">
-            <div class="moorabi-custommenu default">
-              <h2 class="widgettitle">Information</h2>
-              <ul class="menu">
-                  {% for info in category.info  %}
-                     <li class="menu-item"><a href="#">{{ info.name }}</a></li>
-                  {% endfor %}
-
-
-
-              </ul>
-            </div>
-          </div>
-          <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            <div class="moorabi-newsletter style1">
-              <div class="newsletter-head">
-                <h3 class="title">Письма</h3></div>
-              <div class="newsletter-form-wrap">
-                <div class="list">Get notified of new products, limited releases, and more.</div>
-                <input type="email" class="input-text email email-newsletter" placeholder="Your email letter">
-                <button class="button btn-submit submit-newsletter">Подписаться</button>
-              </div>
-            </div>
-            <div class="moorabi-socials">
-              <ul class="socials">
-                <li><a href="#" class="social-item" target="_blank"><i class="icon fa fa-facebook"></i></a></li>
-                <li><a href="#" class="social-item" target="_blank"><i class="icon fa fa-twitter"></i></a></li>
-                <li><a href="#" class="social-item" target="_blank"><i class="icon fa fa-instagram"></i></a></li>
-              </ul>
-            </div>
-          </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12 border-custom"><span></span></div>
+    </footer>
+    <div class="footer-device-mobile">
+        <div class="wapper">
+            <div class="footer-device-mobile-item device-home"><a href="{% url 'index' %}"><span class="icon"><i
+                    class="fa fa-home" aria-hidden="true"></i></span>Home</a></div>
+            <div class="footer-device-mobile-item device-home device-wishlist"><a href="#"><span class="icon"><i
+                    class="fa fa-heart" aria-hidden="true"></i></span>Wishlist</a></div>
+            <div class="footer-device-mobile-item device-home device-cart"><a href="#"><span class="icon"><i
+                    class="fa fa-shopping-basket" aria-hidden="true"></i><span class="count-icon">0</span></span><span
+                    class="text">Cart</span></a></div>
+            <div class="footer-device-mobile-item device-home device-user"><a href="#"><span class="icon"><i
+                    class="fa fa-user" aria-hidden="true"></i></span>Account</a></div>
         </div>
-        <div class="footer-end">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="coppyright"> Copyright © 2022 <a href="https://github.com/Vyalkoff">Vlad</a> . All rights reserved</div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="moorabi-payment"><img src="{% static 'images/payments.png' %}" alt="img"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-<div class="footer-device-mobile">
-    <div class="wapper">
-      <div class="footer-device-mobile-item device-home"><a href="{% url 'index' %}"><span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>Home</a></div>
-      <div class="footer-device-mobile-item device-home device-wishlist"><a href="#"><span class="icon"><i class="fa fa-heart" aria-hidden="true"></i></span>Wishlist</a></div>
-      <div class="footer-device-mobile-item device-home device-cart"><a href="#"><span class="icon"><i class="fa fa-shopping-basket" aria-hidden="true"></i><span class="count-icon">0</span></span><span class="text">Cart</span></a></div>
-      <div class="footer-device-mobile-item device-home device-user"><a href="#"><span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>Account</a></div>
-    </div>
-  </div><a href="#" class="backtotop"><i class="fa fa-angle-double-up"></i></a>
+    </div><a href="#" class="backtotop"><i class="fa fa-angle-double-up"></i></a>
 {% endblock %}
 
 
 
 {% block script %}
- <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
     <script src="/static/js/jquery.plugin-countdown.min.js"></script>
     <script src="/static/js/jquery-countdown.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
@@ -376,7 +359,8 @@
     <script src="/static/js/owl.thumbs.min.js"></script>
     <script src="/static/js/jquery.scrollbar.min.js"></script>
     <script src='http://www.google.cn/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
-    <script src="/static/js/frontend-plugin.js"></script>
+    <script src="{% static 'js/frontend-plugin.js' %}"></script>
+    <script src="{% static 'js/baskets.js' %}"></script>
 {% endblock %}
 </body>
 

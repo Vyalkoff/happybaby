@@ -128,6 +128,7 @@ input[type="password"],
 input[type="tel"],
 input[type="search"],
 input[type="url"],
+input[type="file"],
 textarea,
 select {
     border: 1px solid #eeeeee;
@@ -141,7 +142,8 @@ input[type="email"],
 input[type="password"],
 input[type="tel"],
 input[type="search"],
-input[type="url"] {
+input[type="url"],
+input[type="file"]{
     height: 42px;
     font-size: 15px;
     border-radius: 5px;
@@ -194,6 +196,7 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="tel"]:focus,
 input[type="url"]:focus,
+input[type="file"]:focus,
 textarea:focus,
 button:focus,
 select:focus {
@@ -1680,7 +1683,7 @@ table tr:last-child th {
 /* -------------------- */
 /*header-style-1*/
 .header .main-header {
-    padding: 50px 0;
+    padding: 30px 0;
 }
 
 .social-header,
@@ -12177,104 +12180,10 @@ iframe {
     }
 
     /*==========home 07=========*/
-    .header .main-header {
-        padding: 40px 0 37px;
-    }
 
-    .header.style7 .header-nav-container,
-    .header.style7 .header-nav-wapper {
-        display: none;
-    }
-
-    .header.style7 .header-control {
-        padding-top: 0;
-    }
-
-    .slider-item.style19 .slider-inner .slider-infor,
-    .slider-item.style20 .slider-inner .slider-infor,
-    .slider-item.style21 .slider-inner .slider-infor {
-        padding-left: 300px;
-    }
 
     /*==========home 08=========*/
-    .header.style8 .header-control .block-header .moorabi-submenu {
-        left: auto;
-    }
 
-    .item-banner.style20 .title {
-        font-size: 30px;
-    }
-
-    .item-banner.style20 .code .nummer-code {
-        font-size: 15px;
-    }
-
-    .item-banner.style21 .banner-content {
-        padding-left: 500px;
-        padding-top: 80px;
-        padding-bottom: 80px;
-    }
-
-    .item-banner.style21 .group-pinap .btn-pinmap-1 {
-        left: 360px;
-    }
-
-    /*==========home 09=========*/
-    /*herder*/
-    .header.style9 .bar-open-menu {
-        display: none;
-    }
-
-    .header.style9 .header-control {
-        padding-top: 0;
-    }
-
-    .header.style9 .block-search .moorabi-submenu {
-        right: 0;
-        left: auto;
-    }
-
-    .slider-item.style13 .slider-inner .slider-infor,
-    .slider-item.style14 .slider-inner .slider-infor,
-    .slider-item.style15 .slider-inner .slider-infor {
-        padding-left: 450px;
-    }
-
-    .slider-item.style13 .pinmap-buttom.btn-pinmap-1 {
-        top: 260px;
-        left: 340px;
-    }
-
-    .slider-item.style13 .pinmap-buttom.btn-pinmap-2 {
-        left: 230px;
-    }
-
-    .slider-item.style14 .pinmap-buttom.btn-pinmap-1 {
-        top: 270px;
-        left: 345px;
-    }
-
-    .slider-item.style14 .pinmap-buttom.btn-pinmap-2 {
-        left: 300px;
-    }
-
-    .slider-item.style15 .pinmap-buttom.btn-pinmap-1 {
-        left: 390px;
-    }
-
-    .item-banner.style15 .banner-content,
-    .item-banner.style13 .banner-content,
-    .item-banner.style14 .banner-content,
-    .item-banner.style16 .banner-content {
-        padding-left: 15px;
-        padding-right: 15px;
-        text-align: center;
-    }
-
-    .item-banner.style12 .banner-content {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
 
     /*==========home 10=========*/
     .header.style10 .logo {
@@ -12788,6 +12697,7 @@ iframe {
     input[type="tel"],
     input[type="search"],
     input[type="url"],
+    input[type="file"],
     textarea,
     select {
         padding: 7px 10px;
@@ -13884,10 +13794,74 @@ a:active,
 }
 
 .product-item .product-inner img {
-    width: 100%;
+    width: 150px;
+    height:170px;
 }
 
 @font-face {
     font-family:"Ballo Cyrill" ;
     src: url("/static/fonts/baloo-cyrillic.ttf");
+}
+/* Стили выбор изображения*/
+.input-file {
+	position: relative;
+	display: inline-block;
+}
+.input-file-text {
+	padding: 0 10px;
+	line-height: 40px;
+	text-align: left;
+	height: 40px;
+	display: block;
+	float: left;
+	box-sizing: border-box;
+	width: 200px;
+	border-radius: 6px 0px 0 6px;
+	border: 1px solid #ddd;
+}
+.input-file-btn {
+position: relative;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	text-decoration: none;
+	font-size: 14px;
+	vertical-align: middle;
+	color: rgb(255 255 255);
+	text-align: center;
+	border-radius: 0 4px 4px 0;
+	background-color: #419152;
+	line-height: 22px;
+	height: 40px;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	border: none;
+	margin: 0;
+	transition: background-color 0.2s;
+}
+.input-file input[type=file] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
+}
+
+/* Focus */
+.input-file input[type=file]:focus + .input-file-btn {
+	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Hover/active */
+.input-file:hover .input-file-btn {
+	background-color: #59be6e;
+}
+.input-file:active .input-file-btn {
+	background-color: #2E703A;
+}
+
+/* Disabled */
+.input-file input[type=file]:disabled + .input-file-btn {
+	background-color: #eee;
 }
