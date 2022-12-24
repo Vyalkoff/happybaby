@@ -3,6 +3,7 @@ from pathlib import Path
 import json
 from mainapp.models import Product, ProductCategory
 from basketapp.models import BasketItem
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def openfile(file_json):
@@ -21,11 +22,11 @@ def index(request):
     product_new = Product.objects.filter(status='new')[:5]
     product_most = Product.objects.filter(status='most')[:5]
     product_sale = Product.objects.filter(status='sale')[:5]
-    category = ProductCategory.objects.all()
+    category_all = ProductCategory.objects.all()
     basket = BasketItem.get_basket(request.user)
     context = {
         'title': 'happybabby-Главная',
-        'category': category,
+        'category': category_all,
         'basket': basket,
         "insta": insta,
         "product_new": product_new,

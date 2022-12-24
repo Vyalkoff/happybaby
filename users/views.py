@@ -4,7 +4,7 @@ from mainapp.views import openfile
 from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
 from django.contrib import auth
 from django.urls import reverse
-from django.shortcuts import render, HttpResponseRedirect,HttpResponse
+from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
