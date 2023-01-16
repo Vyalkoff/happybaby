@@ -1,0 +1,7 @@
+{% load static %}
+ <div id="total_quantity" class="block-minicart moorabi-mini-cart block-header "><a href="{% url 'basket:index' %}"
+                                                                                      class="shopcart-icon"
+                                                                                      data-moorabi="moorabi-dropdown"><span
+                                class="count">{% if basket and user.is_authenticated %} {{ basket.first.total_quantity }} {% else %}
+                            0 {% endif %}</span></a>
+                        </div>

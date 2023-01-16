@@ -1,0 +1,97 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title|title }}
+{% endblock %}
+
+
+{% block content %}
+    <div class="main-content main-content-login">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-trail breadcrumbs">
+                        <ul class="trail-items breadcrumb">
+                            <li class="trail-item trail-begin"><a
+                                    href="{% url 'index' %}"></a>Главная
+                            </li>
+                            <li class="trail-item trail-end active"> Регистрация</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="content-area col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="site-main">
+                        <h3 class="custom_blog_title"> Регистрация</h3>
+                        <div class="customer_login">
+                            <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                         {% if form.errors %}
+                                            <div class="alert alert-warning alert-dismissable  show" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">x</span>
+                                                </button>
+                                            {% for _,error in form.errors.items %}
+                                                    {{ error }}
+                                            {% endfor %}
+
+                                            </div>
+                                        {% endif %}
+                                        <div class="login-item">
+                                             <form class="register" method="post" action="{% url 'users:register' %}">
+                                                {% csrf_token %}
+                                                 <p class="form-row form-row-wide">
+
+                                                        <label class="text">Email</label>
+                                                        {{ form.email }}
+                                                 </p>
+
+                                                 <p class="form-row form-row-wide">
+
+
+                                                        <label class="text">Имя</label>
+                                                            {{ form.username }}
+
+
+                                                         <label class="text">Фамилия</label>
+                                                            {{ form.last_name }}
+
+
+                                                </p>
+                                                 <p class="form-row form-row-wide">
+
+                                                        <label class="text">Пароль</label>
+                                                            {{ form.password1 }}
+
+
+                                                         <label class="text">Повторите пароль</label>
+                                                            {{ form.password2 }}
+
+
+                                                </p>
+
+                                                 <p class="form-row ">
+
+                                                        <input type="submit" class="button-submit" value="Регистрация">
+
+                                                </p>
+
+
+                                        </form>
+                                        </div>
+
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
