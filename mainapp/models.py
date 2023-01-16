@@ -30,13 +30,13 @@ class Product(models.Model):
 
     quantity = models.PositiveSmallIntegerField(verbose_name='колличество на складе',
                                                 default=0)
-
     specification = models.TextField(verbose_name='характеристика', blank=True)
     status = models.CharField(max_length=6, blank=True, choices=Kind.choices)
 
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+        ordering = ['price']
 
     def __str__(self):
         return f'{self.name} ({self.category})'

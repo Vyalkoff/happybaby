@@ -20,6 +20,10 @@ class BasketItem(models.Model):
         else:
             return []
 
+    class Meta:
+        verbose_name = 'Корзина'
+        verbose_name_plural = 'Корзины'
+
     @property
     def filter_user(self):
         return BasketItem.get_basket(self.name)

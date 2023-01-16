@@ -3,7 +3,8 @@ from pathlib import Path
 import json
 from mainapp.models import Product, ProductCategory
 from basketapp.models import BasketItem
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import ListView, DetailView
+from happybaby.mixin import TitleContextMixin
 
 
 def openfile(file_json):
@@ -13,69 +14,83 @@ def openfile(file_json):
     return js_prod
 
 
-mini_basket = openfile('basket.json')
 insta = openfile('insta.json')
 
 
 # Create your views here.
-def index(request):
-    product_new = Product.objects.filter(status='new')[:5]
-    product_most = Product.objects.filter(status='most')[:5]
-    product_sale = Product.objects.filter(status='sale')[:5]
-    category_all = ProductCategory.objects.all()
-    basket = BasketItem.get_basket(request.user)
-    context = {
-        'title': 'happybabby-Главная',
-        'category': category_all,
-        'basket': basket,
-        "insta": insta,
-        "product_new": product_new,
-        "product_most": product_most,
-        "product_sale": product_sale,
+class IndexView(ListView, TitleContextMixin):
+    template_name = 'mainapp/index.html'
+    model = BasketItem
+    title = 'Главная'
 
-    }
-    return render(request, 'mainapp/index.html', context)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['category'] = ProductCategory.objects.all()
+        context['product_new'] = Product.objects.filter(status='new')[:5]
+        context['product_most'] = Product.objects.filter(status='most')[:5]
+        context['product_sale'] = Product.objects.filter(status='sale')[:5]
+        context['insta'] = openfile('insta.json')
+        context['basket'] = BasketItem.objects.filter(
+            name=self.request.user) if self.request.user.is_authenticated else ''
+        return context
 
 
-def products(request, category_id):
-    product = Product.objects.filter(category=category_id)
-    category = ProductCategory.objects.all()
-    current_category = ProductCategory.objects.get(pk=category_id)
-    basket = BasketItem.get_basket(request.user)
-    context = {
-        'title': current_category,
-        'category': category,
-        'basket': basket,
-        "insta": insta,
-        "product": product,
-        'current_category': current_category
+class CategoryAllView(ListView, TitleContextMixin):
+    model = ProductCategory
+    template_name = 'mainapp/products.html'
+    paginate_by = 4
+    queryset = Product.objects.all()
+    context_object_name = 'product'
+    title = 'Все Товары'
 
-    }
-    return render(request, 'mainapp/products.html', context)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CategoryAllView, self).get_context_data(**kwargs)
+        context['basket'] = BasketItem.get_basket(self.request.user)
+        context['category'] = ProductCategory.objects.all()
+        context['insta'] = openfile('insta.json')
+
+        return context
 
 
-def product_all(request):
-    product = Product.objects.filter(status='most')
-    category = ProductCategory.objects.all()
-    basket = BasketItem.get_basket(request.user)
-    context = {
-        'title': 'Популярные',
-        'category': category,
-        'basket': basket,
-        "insta": insta,
-        "product": product,
-        'current_category': 'Популярные'
+class CategoryView(ListView):
+    model = Product
+    template_name = 'mainapp/products.html'
+    paginate_by = 2
+    context_object_name = 'product'
 
-    }
-    return render(request, 'mainapp/products.html', context)
+    def get_queryset(self):
+        return Product.objects.filter(category=self.kwargs['category_id'])
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CategoryView, self).get_context_data(**kwargs)
+        context['basket'] = BasketItem.get_basket(self.request.user)
+        context['category'] = ProductCategory.objects.all()
+        context['insta'] = openfile('insta.json')
+        context['current_category'] = ProductCategory.objects.get(id=self.kwargs['category_id'])
+
+        return context
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'mainapp/product_details.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        context['basket'] = BasketItem.get_basket(self.request.user)
+        context['category'] = ProductCategory.objects.all()
+        context['insta'] = openfile('insta.json')
+        context['current_category'] = ProductCategory.objects.filter(id=self.kwargs['category_id'])
+
+        return context
 
 
 def details_product(request):
-    category = ProductCategory.objects.all()
+    category_all = ProductCategory.objects.all()
     basket = BasketItem.get_basket(request.user)
     context = {
         'title': 'happybabby',
-        'category': category,
+        'category': category_all,
         'basket': basket,
         "insta": insta,
     }
